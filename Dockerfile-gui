@@ -1,0 +1,11 @@
+FROM python:3
+
+ENV PYTHONUNBUFFERED=1
+# Set the working directory.
+
+ADD gui.py /
+ADD BasicHealthReportGenerator.py /
+ADD BhrReportOperations.py /
+RUN pip install openpyxl
+RUN pip install jira
+CMD [ "python", "./gui.py" ]
