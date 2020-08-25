@@ -8,7 +8,7 @@ import sys
 from datetime import datetime
 from time import sleep
 
-app = Flask(__name__, template_folder= 'C:/ASRAWAT/test/Docker/GUI/template/')
+app = Flask(__name__, template_folder= './template/')
 value ='I am great'
 #import BasicHealthReportGenerator as BHR
 
@@ -26,7 +26,7 @@ def stopWatch():
 @app.route('/HealthReport_OnlineVersion')
 def onlineVersion():
     #workBook = BHR.generateBasicHealthReport(2)
-    workBook = openpyxl.load_workbook("C:/ASRAWAT/test/Docker/GUI/template/BasicHealthForDay2DayWork.xlsx")
+    workBook = openpyxl.load_workbook("./template/BasicHealthForDay2DayWork.xlsx")
     healthReportSheet = workBook["BasicHealthReport_R20.8"]
     detailsSheet = workBook["Details_R20.8"]
     list = [[],[],[],[],[],[],[],[],[],[],[], [], [], [], [], [],[],[],[],[],[],[],[],[],[],[], [], [], [], [], [],[],[],[],[],[],[],[],[],[],[], [], [], [], [], [],[],[],[],[],[],[],[],[],[],[], [], [], [], []]
@@ -54,7 +54,7 @@ def onlineVersion():
 @app.route('/download')
 def download():
 
-    return (send_file('C:/ASRAWAT/test/Docker/GUI/template/BasicHealthForDay2DayWork.xlsx', attachment_filename='BasicHealthForDay2DayWork.xlsx'))
+    return (send_file('./template/BasicHealthForDay2DayWork.xlsx', attachment_filename='BasicHealthForDay2DayWork.xlsx'))
     #return "Report Generated"
 
 
@@ -62,10 +62,10 @@ def download():
 @app.route('/home')
 @app.route('/')
 def home():
-    file = 'C:/ASRAWAT/test/WebServerFlask/BasicHealthForDay.xlsx'
+    file = './template/BasicHealthForDay2DayWork.xlsx'
     lastModified=str(time.ctime(os.path.getmtime(file)))
     print(lastModified)
-    return render_template("home.html", time = lastModified)
+    return render_template("Home.html", time = lastModified)
 
 if __name__ == '__main__':
-    app.run(debug=False)#, host = '10.143.81.229')
+    app.run(host = '0.0.0.0')
