@@ -10,7 +10,7 @@ from time import sleep
 
 app = Flask(__name__, template_folder= 'C:/ASRAWAT/test/Docker/GUI/template/')
 value ='I am great'
-import BasicHealthReportGenerator as BHR
+#import BasicHealthReportGenerator as BHR
 
 
 @app.route('/count')

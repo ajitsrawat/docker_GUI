@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-webServer-service
+  name: test-webserver-service
 spec:
   selector:
-    app: test-webServer
+    app: webserver
   ports:
   - protocol: "TCP"
     port: 6000
@@ -15,20 +15,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-webServer
+  name: dep-webserver
 spec:
   selector:
     matchLabels:
-      app: test-webServer
+      app: webserver
   replicas: 2
   template:
     metadata:
       labels:
-        app: test-webServer
+        app: webserver
     spec:
       containers:
-      - name: test-webServer
-        image: test-webServer:latest
-        imagePullPolicy: Never
+      - name: webserver
+        image: ajitsrawat/webserver:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
