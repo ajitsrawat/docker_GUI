@@ -10,5 +10,5 @@ ADD BhrReportOperations.py /
 RUN pip install openpyxl
 RUN pip install jira
 RUN pip install flask
-
+EXPOSE 5000
 CMD [ "python", "./webServer.py" ]
