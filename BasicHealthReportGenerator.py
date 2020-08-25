@@ -110,10 +110,10 @@ def generateBasicHealthReport(guiOrWeb=0):
     # global perfUstCount
     currentWk = datetime.date.today().isocalendar()[1]
     try:
-        workBook = openpyxl.load_workbook('C:/ASRAWAT/test/BasicHealthReport/BasicHealthForDay2DayWork_wk'+str(currentWk)+'.xlsx')
+        workBook = openpyxl.load_workbook('C:/ASRAWAT/test/Docker/GUI/template/BasicHealthForDay2DayWork.xlsx')
     except FileNotFoundError:
         print("MyError: New Week Started copying previous week file to new one.")
-        workBook = openpyxl.load_workbook('C:/ASRAWAT/test/BasicHealthReport/BasicHealthForDay2DayWork_wk' + str(currentWk-1) + '.xlsx')
+        #workBook = openpyxl.load_workbook('C:/ASRAWAT/test/BasicHealthReport/BasicHealthForDay2DayWork_wk' + str(currentWk-1) + '.xlsx')
     print(workBook.sheetnames) # all names
 
     if(guiOrWeb == 2 ):
@@ -136,11 +136,11 @@ def generateBasicHealthReport(guiOrWeb=0):
     jiraCredentialFile = open('C:/ASRAWAT/test/JiraAccess.txt', 'r')
     user = jiraCredentialFile.readline().strip()
     password = jiraCredentialFile.readline().strip()
-    #print(user, password)
-    options = {'server': "https://jiradc2.int.net.nokia.com/"}
+    print(user, password)
+    options = {'server': "https://jiradc2.ext.net.nokia.com/"}
     jira = JIRA(options, basic_auth=(user, password))
-    ##issue = jira.issue('RGSOL-3237')
-    ##print(issue.fields.summary)
+    issue = jira.issue('RGSOL-3237')
+    print(issue.fields.summary)
 
     queryList = RO.readQueries(querySheet)
     listSize = len(queryList)
@@ -149,7 +149,7 @@ def generateBasicHealthReport(guiOrWeb=0):
         ### Release R20
         release = "R20.8"
         query = queryList[queryIndex] + ' and affectedVersion in ("Nokia Registers 20.8") and sprint in (openSprints())  '
-        print(query)
+        #print(query)
         # issueList = jira.search_issues(query)
         # if(queryIndex<4):
         #     perfUstCount = perfUstCount + len(issueList)
@@ -171,9 +171,9 @@ def generateBasicHealthReport(guiOrWeb=0):
 
         generateBasicHealthReportReleaseWise(workBook, jira, query, queryIndex, release)
         #Release R19 MP6
-        release = "R19MP6"
-        query = queryList[queryIndex] + ' and affectedVersion in ("Nokia Registers 19MP6") and Sprint = 82868 '
-        generateBasicHealthReportReleaseWise(workBook, jira, query, queryIndex, release)
+        #release = "R19MP6"
+        #query = queryList[queryIndex] + ' and affectedVersion in ("Nokia Registers 19MP6") and Sprint = 82868 '
+        #generateBasicHealthReportReleaseWise(workBook, jira, query, queryIndex, release)
 
     fillJiraRaisedBySyVeinReport(workBook, jira) # consolidated Jiras in a single sheet.
 
@@ -209,7 +209,7 @@ def generateBasicHealthReport(guiOrWeb=0):
         messagebox.showinfo("Title", "Hurray, Health Report Generated.")
         return None
     elif(guiOrWeb == 1):##From Web application
-        workBook.save('C:/ASRAWAT/test/WebServerFlask/BasicHealthForDay.xlsx')
+        workBook.save('C:/ASRAWAT/test/Docker/GUI/template/BasicHealthForDay2DayWork.xlsx')
         print("Basic Health Report Generated")
         return workBook
 

@@ -8,4 +8,4 @@ ADD BasicHealthReportGenerator.py /
 ADD BhrReportOperations.py /
 RUN pip install openpyxl
 RUN pip install jira
-CMD [ "python", "./gui.py" ]
+CMD [ "python", "./webServer.py" ]

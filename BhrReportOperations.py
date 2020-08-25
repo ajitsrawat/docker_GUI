@@ -113,8 +113,8 @@ def readQueries(querySheet):
         if(querySheet.cell(i, 1).value != None):
             queryList.append(querySheet.cell(i, 1).value)
     listSize = len(queryList)
-    for i in range(0, listSize):
-        print(queryList[i])
+    #for i in range(0, listSize):
+        #print(queryList[i])
 
     return queryList  
 

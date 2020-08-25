@@ -1,0 +1,104 @@
+<h2>Health Report</h2>
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse;mso-yfti-tbllook:1184;mso-padding-alt:
+ 0cm 5.4pt 0cm 5.4pt'>
+ <tr>
+  <td></td>
+  <td width="42%" colspan=5 valign=bottom style='width:42.68%;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-top-alt:solid windowtext .5pt;mso-border-bottom-alt:
+  solid windowtext .5pt;mso-border-right-alt:solid windowtext .5pt;background:
+  #5B9BD5;padding:0cm 5.4pt 0cm 5.4pt;height:18.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span style='font-size:14.0pt;
+  mso-ascii-font-family:Calibri;mso-fareast-font-family:"Times New Roman";
+  mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;color:black;
+  mso-fareast-language:EN-IN'>Cloud<o:p></o:p></span></b></p>
+  </td>
+  <td width="42%" colspan=5 valign=bottom style='width:42.68%;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-top-alt:solid windowtext .5pt;mso-border-bottom-alt:
+  solid windowtext .5pt;mso-border-right-alt:solid windowtext .5pt;background:
+  #00B050;padding:0cm 5.4pt 0cm 5.4pt;height:18.5pt'>
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><b><span style='font-size:14.0pt;
+  mso-ascii-font-family:Calibri;mso-fareast-font-family:"Times New Roman";
+  mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;color:black;
+  mso-fareast-language:EN-IN'>BM<o:p></o:p></span></b></p>
+  </td>
+ </tr>
+ {% for row  in li %}
+ {% if loop.index <14%}
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:18.5pt'>
+  {%for cell in row %}
+  {%if loop.index ==1 or (cell =="Performance") or (cell =="Serviceablity ") or (cell =="Security")
+  or (cell =="RET") or (cell =="NetAct") or (cell =="MAV")  %}
+  <td bgcolor="YELLOW" width=
+              "8%" nowrap valign=bottom style='width:8.62%;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.5pt'>
+  {%elif ((cell=="Implicit Covered") or (cell =="NA") ) %}
+  <td bgcolor="WHITE" width=
+              "8%" nowrap valign=bottom style='width:8.62%;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.5pt'>
+    {%elif cell %}
+  <td bgcolor="RED" width=
+              "8%" nowrap valign=bottom style='width:8.62%;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.5pt'>
+  {%else%}
+  <td bgcolor="WHITE" width=
+              "8%" nowrap valign=bottom style='width:8.62%;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.5pt'>
+  {%endif%}
+   {%if cell%}
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:14.0pt;
+  mso-ascii-font-family:Calibri;mso-fareast-font-family:"Times New Roman";
+  mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;color:black;
+  mso-fareast-language:EN-IN'>&nbsp;<o:p>{{cell}}</o:p></span></p>
+  {%endif%}
+  </td>
+  {% endfor %}
+ </tr>
+ {%endif%}
+ {% endfor %}
+</table>
+
+<h2>Details</h2>
+<table class=MsoNormalTable border=0 cellspacing=0 cellpadding=0 width="100%"
+ style='width:100.0%;border-collapse:collapse;mso-yfti-tbllook:1184;mso-padding-alt:
+ 0cm 5.4pt 0cm 5.4pt'>
+
+
+ {% for row  in li %}
+ {% if loop.index >=14%}
+ <tr style='mso-yfti-irow:0;mso-yfti-firstrow:yes;height:18.5pt'>
+  {%for cell in row %}
+  {% if (loop.index <7) and (loop.index !=4) and  (loop.index !=5)  %}
+  {%if loop.index ==1 or (cell =="Area") or (cell =="Result (R20) ") or (cell == " R20 Blocked By ") %}
+  <td bgcolor="YELLOW" width=
+              "4%" wrap valign=bottom style='width:8.62%;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.5pt'>
+  {%else%}
+  <td bgcolor="WHITE" width=
+              "8%" wrap valign=bottom style='width:8.62%;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:18.5pt'>
+  {%endif%}
+   {%if cell%}
+  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
+  text-align:center;line-height:normal'><span style='font-size:14.0pt;
+  mso-ascii-font-family:Calibri;mso-fareast-font-family:"Times New Roman";
+  mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;color:black;
+  mso-fareast-language:EN-IN'>&nbsp;<o:p>{{cell}}</o:p></span></p>
+  {%endif%}
+  </td>
+  {% endif %}
+  {% endfor %}
+ </tr>
+ {%endif%}
+ {% endfor %}
+</table>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+</div>
+
+</body>
+
